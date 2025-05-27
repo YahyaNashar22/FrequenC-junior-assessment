@@ -18,6 +18,5 @@ import { UsersModule } from './users/users.module';
     UsersModule,
   ],
   controllers: [],
-  providers: [],
 })
 export class AppModule {}
