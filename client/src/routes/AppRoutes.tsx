@@ -4,6 +4,7 @@ import SignUp from "../pages/SignUp";
 import PrivateRoute from "../components/PrivateRoute";
 import Dashboard from "../pages/Dashboard";
 import TaskForm from "../pages/TaskForm";
+import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -37,6 +38,7 @@ const AppRoutes = () => {
           </PrivateRoute>
         }
       />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   );
 };
