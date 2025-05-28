@@ -91,7 +91,11 @@ const Dashboard = () => {
               {filteredTasks.map((task) => (
                 <li key={task._id}>
                   <h3>{task.title}</h3>
-                  <p>{task.description ?? "No Description Available"}</p>
+                  <p>
+                    {task.description === ""
+                      ? "No Description Available"
+                      : task.description}
+                  </p>
                   <p>Due: {new Date(task.dueDate).toLocaleDateString()}</p>
                   <select
                     disabled={submitting}

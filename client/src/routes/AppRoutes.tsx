@@ -3,6 +3,7 @@ import Signin from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import PrivateRoute from "../components/PrivateRoute";
 import Dashboard from "../pages/Dashboard";
+import TaskForm from "../pages/TaskForm";
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,24 @@ const AppRoutes = () => {
         element={
           <PrivateRoute>
             <Dashboard />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/task/new"
+        element={
+          <PrivateRoute>
+            <TaskForm />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/task/edit/:id"
+        element={
+          <PrivateRoute>
+            <TaskForm />
           </PrivateRoute>
         }
       />
