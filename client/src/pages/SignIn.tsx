@@ -30,7 +30,7 @@ const Signin = () => {
     try {
       const res = await api.post("/users/login", formData);
       setToken(res.data.accessToken);
-      navigate("/dashboard");
+      navigate("/");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(
@@ -42,7 +42,7 @@ const Signin = () => {
   };
 
   return (
-    <div>
+    <main>
       <h2>Sign in</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -68,7 +68,7 @@ const Signin = () => {
         </button>
       </form>
       {error && <p className="error">{error}</p>}
-    </div>
+    </main>
   );
 };
 
