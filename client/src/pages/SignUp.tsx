@@ -68,11 +68,11 @@ const SignUp = () => {
           />
         </label>
 
-        <button disabled={loading} type="submit">
+        <button disabled={loading} type="submit" className="mt-2 success">
           Sign Up
         </button>
 
-        <p>
+        <p className="text-center mt-1 ">
           Already have an account ?<Link to="/signin">Sign in</Link>
         </p>
       </form>

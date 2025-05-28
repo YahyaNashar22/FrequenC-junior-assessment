@@ -65,12 +65,21 @@ const Dashboard = () => {
 
   return (
     <main>
-      <h1>Dashboard</h1>
-      <button onClick={() => navigate("/task/new")}>+ New Task</button>
+      <div className="flex-between">
+        <h1>Dashboard</h1>
+        <button onClick={logout} className="mt-1 error">
+          Logout
+        </button>
+      </div>
+
+      <button onClick={() => navigate("/task/new")} className="success">
+        + New Task
+      </button>
 
       <select
         value={filter}
         onChange={(e) => setFilter(e.target.value as TaskStatus | "All")}
+        className="mt-1"
       >
         <option value="All">All</option>
         <option value="To-Do">To-Do</option>
@@ -108,22 +117,27 @@ const Dashboard = () => {
                     <option value="In Progress">In Progress</option>
                     <option value="Done">Done</option>
                   </select>
-                  <button onClick={() => navigate(`/task/edit/${task._id}`)}>
-                    Edit
-                  </button>
-                  <button
-                    disabled={submitting}
-                    onClick={() => handleTaskDelete(task._id)}
-                  >
-                    Delete
-                  </button>
+                  <div className="flex">
+                    <button
+                      onClick={() => navigate(`/task/edit/${task._id}`)}
+                      className="warning"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      disabled={submitting}
+                      onClick={() => handleTaskDelete(task._id)}
+                      className="error"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
           )}
         </>
       )}
-      <button onClick={logout}>Logout</button>
     </main>
   );
 };

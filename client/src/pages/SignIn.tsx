@@ -70,11 +70,11 @@ const Signin = () => {
           />
         </label>
 
-        <button disabled={loading} type="submit">
+        <button disabled={loading} type="submit" className="mt-2 success">
           Sign In
         </button>
 
-        <p>
+        <p className="text-center mt-1">
           Don't have an account ?<Link to="/signup">Sign up</Link>
         </p>
       </form>
