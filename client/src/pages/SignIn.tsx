@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { IUserState } from "../interfaces/IUser";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../utils/axios";
 import { useAuthStore } from "../store/authStore";
 
@@ -30,9 +30,10 @@ const Signin = () => {
     try {
       const res = await api.post("/users/login", formData);
       setToken(res.data.accessToken);
-      navigate("/");
+      navigate("/dashboard");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
+      console.log(error);
       setError(
         error.response?.data?.message || "Login Failed, Please Try Again Later"
       );
@@ -45,27 +46,37 @@ const Signin = () => {
     <main>
       <h2>Sign in</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
+        <label>
+          username
+          <input
+            type="text"
+            placeholder="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-        <input
-          type="password"
-          placeholder="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <label>
+          password
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
         <button disabled={loading} type="submit">
-          Sign Up
+          Sign In
         </button>
+
+        <p>
+          Don't have an account ?<Link to="/signup">Sign up</Link>
+        </p>
       </form>
       {error && <p className="error">{error}</p>}
     </main>

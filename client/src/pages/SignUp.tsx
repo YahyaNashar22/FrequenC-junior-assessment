@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import type { IUserState } from "../interfaces/IUser";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../utils/axios";
 
 const SignUp = () => {
@@ -44,27 +44,37 @@ const SignUp = () => {
     <main>
       <h2>Sign up</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
+        <label>
+          username
+          <input
+            type="text"
+            placeholder="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
-        <input
-          type="password"
-          placeholder="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <label>
+          password
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </label>
 
         <button disabled={loading} type="submit">
           Sign Up
         </button>
+
+        <p>
+          Already have an account ?<Link to="/signin">Sign in</Link>
+        </p>
       </form>
       {error && <p className="error">{error}</p>}
     </main>
