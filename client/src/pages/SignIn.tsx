@@ -29,7 +29,7 @@ const Signin = () => {
     setError("");
     try {
       const res = await api.post("/users/login", formData);
-      setToken(res.data.accessToken);
+      setToken(res.data.access_token);
       navigate("/dashboard");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
