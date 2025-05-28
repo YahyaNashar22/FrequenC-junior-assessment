@@ -13,8 +13,25 @@ export class TaskService {
     return this.taskModel.create(createTaskDto);
   }
 
-  async findAll(): Promise<Task[]> {
-    return this.taskModel.find().exec();
+  async findAll(
+    page = 1,
+    limit = 10,
+    search?: string,
+  ): Promise<{ tasks: Task[]; total: number; page: number; limit: number }> {
+    const filter = search ? { title: { $regex: search, $options: 'i' } } : {};
+
+    const skip = (page - 1) * limit;
+
+    const [tasks, total] = await Promise.all([
+      this.taskModel.find(filter).skip(skip).limit(limit).exec(),
+      this.taskModel.countDocuments(filter),
+    ]);
+    return {
+      tasks,
+      total,
+      page,
+      limit,
+    };
   }
 
   async findOne(id: string): Promise<Task> {
