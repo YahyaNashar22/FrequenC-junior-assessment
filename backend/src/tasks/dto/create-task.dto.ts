@@ -10,7 +10,7 @@ export class CreateTaskDto {
   description?: string;
 
   @IsOptional()
-  @IsEnum({ enum: tasksEnum, default: 'To-Do' })
+  @IsEnum(tasksEnum)
   status?: tasksEnum;
 
   @IsOptional()

@@ -2,9 +2,9 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export enum tasksEnum {
-  'To-Do',
-  'In Progress',
-  'Done',
+  PENDING = 'To-Do',
+  IN_PROGRESS = 'In Progress',
+  DONE = 'Done',
 }
 
 @Schema({ timestamps: true })
@@ -15,7 +15,7 @@ export class Task extends Document {
   @Prop()
   description: string;
 
-  @Prop({ enum: tasksEnum, default: 'To-Do' })
+  @Prop({ enum: tasksEnum, default: tasksEnum.PENDING })
   status: tasksEnum;
 
   @Prop()
